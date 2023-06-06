@@ -51,7 +51,7 @@ class Main:
             self.display_file(file)
     
     def add_param_window(self):
-        # CRIANDO NOVA JANELA
+        # NOVA JANELA
         if self.param_window:
             self.param_window.destroy()
         self.param_window = tk.Toplevel()
@@ -86,7 +86,6 @@ class Main:
         try:
             weight = int(weight)
             self.param_window.destroy()
-            # EXIBE O NOVO PARÂMETRO NA TELA
             self.display_param(param,weight)
         except:
             messagebox.showerror(title="Erro", message="O peso deve ser um número inteiro")
@@ -134,7 +133,6 @@ class Main:
             if len(self.all_files_dir) > 0 and len(self.all_params) > 0:
                 self.final_scoreboard.clear()
 
-                # LÊ OS ARQUIVOS COM BASE NO DIRETÓRIO ARMAZENADO
                 for file_dir in self.all_files_dir:
                     curriculum_score = 0
                     wrong_key = False
@@ -147,7 +145,7 @@ class Main:
 
                         if points[0] != False: # RESULTADO RETORNADO CORRETAMENTE
                             accepted_requests+=1
-                            curriculum_score += int(points[0]) # SOMA NA PONTUAÇÃO TOTAL DESTE CURRÍCULO
+                            curriculum_score += int(points[0])
                         else:
                             if points[1] != False: # ERRO, GERALMENTE NA CONEXÃO/COMUNICAÇÃO COM A API
                                 errors_count+=1
@@ -226,11 +224,11 @@ class Main:
                 self.results_toplevel,
             )
 
-            # CHAMA A FUNÇÃO DE ATUALIZAR VISUALIZAÇÃO SEMPRE QUE O SCROLL É ATUALIZADO
+            # CHAMA A FUNÇÃO DE ATUALIZAR VISUALIZAÇÃO SEMPRE QUE O BOTÃO DO MOUSE É SOLTO
             # CHAMAR ESTA FUNÇÃO NO CALLBACK DO SCALE CAUSARIA LAG
             scrollbar.bind("<ButtonRelease>", lambda event: self.load_items(scroll_index.get(), items_container))
             
-            # GRID
+            # GRID E RESPONSIVO
             scrollbar.grid(row=0,column=1, sticky="ns")
             items_container.grid(row=0,column=0,sticky="wens")
             items_container.columnconfigure(0,weight=1)
@@ -245,6 +243,7 @@ class Main:
             child.destroy()
 
         # CARREGA 10 WIDGETS POR VEZ
+        # MAIS QUE ISSO PODE CAUSAR LAG AO REDIMENSIONAR A JANELA
         for i in range(scroll_index, (scroll_index+10)):
             if i < len(self.final_scoreboard):
                 score = self.final_scoreboard[i]
@@ -327,7 +326,6 @@ class Main:
             command=lambda : self.generate_analysis(entry_api.get())
         )
 
-        # MAIN
         main = tk.Frame(root)
 
         # LISTA DE REGRAS
