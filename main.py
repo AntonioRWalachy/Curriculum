@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk # NEEDS PIP INSTALL
 import json
 
 from scoreboard_widget import Scoreboard_Widget
