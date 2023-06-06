@@ -1,3 +1,4 @@
+# NEEDS PIP INSTALL
 import PyPDF2 as pdf
 
 class Pdf_Reader:

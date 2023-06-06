@@ -1,3 +1,4 @@
+# NEEDS PIP INSTALL
 import openai
 
 class AnalysisAi:
