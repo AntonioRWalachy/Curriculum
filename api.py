@@ -1,9 +1,5 @@
 import openai
 
-# openai.api_key = "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"
-
-
-
 class AnalysisAi:
     def generate_response(self, messages):
         # REQUEST PARA API
@@ -17,10 +13,9 @@ class AnalysisAi:
 
     def analyse(self, text, param, api_key):
         try:
-            # DEFINE A CHAVE DA API PARA CADA CHAMADA
             openai.api_key = api_key
 
-            # CONFIG, CURRICULUM e PARAMETRO
+            # ESTE É O MODELO QUE MELHOR FUNCIONA PARA OBTER O RESULTADO DESEJADO
             message = [{},{}]
             message[0] = {"role": "system", "content": "Responda apenas número!"}
             message[1] = {"role": "user", "content": "Este é um currículo:\n" + text + '\nAnalise o conteúdo do curriculo e: ' + param + '\nResponda apenas números!'}
@@ -57,7 +52,7 @@ class AnalysisAi:
                 if append_num == False:
                     break
         
-        # AS VEZES A AI RETORNA UMA EXPLICAÇÃO DIZENDO QUE NÃO HÁ INFORMAÇÕES
+        # AS VEZES A AI RETORNA UMA EXPLICAÇÃO DIZENDO QUE NÃO HÁ INFORMAÇÕES SUFICIENTES
         if formated_resp.isnumeric() == False:
             formated_resp = "0"
 
@@ -65,5 +60,3 @@ class AnalysisAi:
 
 if __name__ == "__main__":
     gpt = AnalysisAi()
-    #gpt.analyse(curriculum,"Subtraia -1 pontos para cada ano de experiência com C#")
-    #print(gpt.check_response("cv344cd82ksx82"))

@@ -3,13 +3,8 @@ import PyPDF2 as pdf
 class Pdf_Reader:
     def read_pdf(self, file_dir):
         try:
-            # ABRE ARQUIVO EM BINÁRIO
             pdf_file = open(file_dir, 'rb')
-
-            # DADOS DO PDF
             data = pdf.PdfReader(pdf_file)
-
-            # SEPARA O TEXTO EM LINHAS
             converted_text = ""
 
             for page in data.pages:
